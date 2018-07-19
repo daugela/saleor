@@ -451,8 +451,6 @@ export interface ProductUpdateMutation {
         amount: number,
         // Currency code.
         currency: string,
-        // Money formatted according to the current locale.
-        localized: string,
       } | null,
       margin:  {
         start: number | null,
@@ -465,8 +463,6 @@ export interface ProductUpdateMutation {
           amount: number,
           // Currency code.
           currency: string,
-          // Money formatted according to the current locale.
-          localized: string,
         } | null,
         // Upper bound of a price range.
         stop:  {
@@ -474,8 +470,6 @@ export interface ProductUpdateMutation {
           amount: number,
           // Currency code.
           currency: string,
-          // Money formatted according to the current locale.
-          localized: string,
         } | null,
       } | null,
       isPublished: boolean,
@@ -523,8 +517,6 @@ export interface ProductUpdateMutation {
               amount: number,
               // Currency code.
               currency: string,
-              // Money formatted according to the current locale.
-              localized: string,
             },
           } | null,
           // Upper bound of a price range.
@@ -535,8 +527,6 @@ export interface ProductUpdateMutation {
               amount: number,
               // Currency code.
               currency: string,
-              // Money formatted according to the current locale.
-              localized: string,
             },
           } | null,
         } | null,
@@ -568,8 +558,6 @@ export interface ProductUpdateMutation {
               amount: number,
               // Currency code.
               currency: string,
-              // Money formatted according to the current locale.
-              localized: string,
             } | null,
             // Quantity of a product available for sale.
             stockQuantity: number,
@@ -582,6 +570,7 @@ export interface ProductUpdateMutation {
         // The ID of the object.
         id: string,
         name: string,
+        hasVariants: boolean,
       },
       // The storefront URL for the product.
       url: string,
@@ -672,8 +661,6 @@ export interface VariantUpdateMutation {
         amount: number,
         // Currency code.
         currency: string,
-        // Money formatted according to the current locale.
-        localized: string,
       } | null,
       images:  {
         edges:  Array< {
@@ -692,8 +679,6 @@ export interface VariantUpdateMutation {
         amount: number,
         // Currency code.
         currency: string,
-        // Money formatted according to the current locale.
-        localized: string,
       } | null,
       product:  {
         // The ID of the object.
@@ -751,6 +736,19 @@ export interface ProductListQuery {
         name: string,
         // The URL of a main thumbnail for a product.
         thumbnailUrl: string | null,
+        // Informs about product's availability in the storefront,
+        // current price and discounts.
+        availability:  {
+          available: boolean | null,
+        } | null,
+        // The product's base price (without any discounts
+        // applied).
+        price:  {
+          // Amount of money.
+          amount: number,
+          // Currency code.
+          currency: string,
+        } | null,
         productType:  {
           // The ID of the object.
           id: string,
@@ -806,8 +804,6 @@ export interface ProductDetailsQuery {
       amount: number,
       // Currency code.
       currency: string,
-      // Money formatted according to the current locale.
-      localized: string,
     } | null,
     margin:  {
       start: number | null,
@@ -820,8 +816,6 @@ export interface ProductDetailsQuery {
         amount: number,
         // Currency code.
         currency: string,
-        // Money formatted according to the current locale.
-        localized: string,
       } | null,
       // Upper bound of a price range.
       stop:  {
@@ -829,8 +823,6 @@ export interface ProductDetailsQuery {
         amount: number,
         // Currency code.
         currency: string,
-        // Money formatted according to the current locale.
-        localized: string,
       } | null,
     } | null,
     isPublished: boolean,
@@ -878,8 +870,6 @@ export interface ProductDetailsQuery {
             amount: number,
             // Currency code.
             currency: string,
-            // Money formatted according to the current locale.
-            localized: string,
           },
         } | null,
         // Upper bound of a price range.
@@ -890,8 +880,6 @@ export interface ProductDetailsQuery {
             amount: number,
             // Currency code.
             currency: string,
-            // Money formatted according to the current locale.
-            localized: string,
           },
         } | null,
       } | null,
@@ -923,8 +911,6 @@ export interface ProductDetailsQuery {
             amount: number,
             // Currency code.
             currency: string,
-            // Money formatted according to the current locale.
-            localized: string,
           } | null,
           // Quantity of a product available for sale.
           stockQuantity: number,
@@ -937,6 +923,7 @@ export interface ProductDetailsQuery {
       // The ID of the object.
       id: string,
       name: string,
+      hasVariants: boolean,
     },
     // The storefront URL for the product.
     url: string,
@@ -1010,8 +997,6 @@ export interface ProductVariantDetailsQuery {
       amount: number,
       // Currency code.
       currency: string,
-      // Money formatted according to the current locale.
-      localized: string,
     } | null,
     images:  {
       edges:  Array< {
@@ -1030,8 +1015,6 @@ export interface ProductVariantDetailsQuery {
       amount: number,
       // Currency code.
       currency: string,
-      // Money formatted according to the current locale.
-      localized: string,
     } | null,
     product:  {
       // The ID of the object.
@@ -1075,8 +1058,6 @@ export interface MoneyFragment {
   amount: number,
   // Currency code.
   currency: string,
-  // Money formatted according to the current locale.
-  localized: string,
 };
 
 export interface ProductImageFragment {
@@ -1116,8 +1097,6 @@ export interface ProductFragment {
     amount: number,
     // Currency code.
     currency: string,
-    // Money formatted according to the current locale.
-    localized: string,
   } | null,
   margin:  {
     start: number | null,
@@ -1130,8 +1109,6 @@ export interface ProductFragment {
       amount: number,
       // Currency code.
       currency: string,
-      // Money formatted according to the current locale.
-      localized: string,
     } | null,
     // Upper bound of a price range.
     stop:  {
@@ -1139,8 +1116,6 @@ export interface ProductFragment {
       amount: number,
       // Currency code.
       currency: string,
-      // Money formatted according to the current locale.
-      localized: string,
     } | null,
   } | null,
   isPublished: boolean,
@@ -1188,8 +1163,6 @@ export interface ProductFragment {
           amount: number,
           // Currency code.
           currency: string,
-          // Money formatted according to the current locale.
-          localized: string,
         },
       } | null,
       // Upper bound of a price range.
@@ -1200,8 +1173,6 @@ export interface ProductFragment {
           amount: number,
           // Currency code.
           currency: string,
-          // Money formatted according to the current locale.
-          localized: string,
         },
       } | null,
     } | null,
@@ -1233,8 +1204,6 @@ export interface ProductFragment {
           amount: number,
           // Currency code.
           currency: string,
-          // Money formatted according to the current locale.
-          localized: string,
         } | null,
         // Quantity of a product available for sale.
         stockQuantity: number,
@@ -1247,6 +1216,7 @@ export interface ProductFragment {
     // The ID of the object.
     id: string,
     name: string,
+    hasVariants: boolean,
   },
   // The storefront URL for the product.
   url: string,
@@ -1291,8 +1261,6 @@ export interface ProductVariantFragment {
     amount: number,
     // Currency code.
     currency: string,
-    // Money formatted according to the current locale.
-    localized: string,
   } | null,
   images:  {
     edges:  Array< {
@@ -1311,8 +1279,6 @@ export interface ProductVariantFragment {
     amount: number,
     // Currency code.
     currency: string,
-    // Money formatted according to the current locale.
-    localized: string,
   } | null,
   product:  {
     // The ID of the object.
