@@ -19,7 +19,6 @@
       a {
         color: $body-color;
         transition: 0.3s;
-        text-transform: uppercase;
         display: inline-block;
         padding: $global-padding * 1.5;
         font-size: 1.5rem;
@@ -165,7 +164,6 @@
         a {
           color: $body-color;
           font-size: 0.7rem;
-          text-transform: uppercase;
         }
       }
     }

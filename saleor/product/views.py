@@ -120,7 +120,7 @@ def category_index(request, path, category_id):
     # Check for subcategories
     categories = category.get_descendants(include_self=True)
     products = products_with_details(user=request.user).filter(
-        category__in=categories).order_by('name')
+        category__in=categories, is_published=True).order_by('name')
     product_filter = ProductCategoryFilter(
         request.GET, queryset=products, category=category)
     ctx = get_product_list_context(request, product_filter)

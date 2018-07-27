@@ -34,10 +34,29 @@
 
 {% block content %}
   <div class="row checkout">
-    <div class="col-lg-1"></div>
+
     <div class="col-md-6">
       <h1>{% trans "Payment" context "Payment form title" %}</h1>
       {% block forms %}{% endblock %}
     </div>
+
+    <div class="col-md-6" style="padding: 50px 0 0 0;">
+
+      {% if form.number %}
+        <p style="font-weight: 200;margin:0 55px 20px 55px;">Please provide your name exactly as provided on your card.<br>Credit card number (Primary account number/PAN) should be 14-digit number in front. Depending on card issuer (Visa/mastercard) CVV2 code might be placed above card number or in the back (see image below for reference).</p>
+        <img style="width: 80%;display: block;margin:auto;" src="{% static "images/card.jpg" %}">
+        <img style="width: 35%;display: block;margin: 40px auto 0 auto;" src="{% static "images/ccs.jpg" %}">
+        <img style="width: 60px;margin: auto;display: block;" src="{% static "images/service-icon-ra-secure.png" %}">
+      {% else %}
+        <p style="font-weight: 200;margin:0 55px 20px 55px;">Please make a transfer to provided bank account and add your purchase information to payment details:</p>
+        <p style="font-weight: 200;margin:0 55px 20px 55px;">JSC "Company"</p>
+        <p style="font-weight: 200;margin:0 55px 20px 55px;">IBAN: <b>xxxxxxxxxxxxxxxxx</b></p>
+        <p style="font-weight: 200;margin:0 55px 20px 55px;">Bank: BANK AB</p>
+        <p style="font-weight: 200;margin:0 55px 20px 55px;">Company code: 1111111111</p>
+        <p style="font-weight: 200;margin:0 55px 20px 55px;">You can send your payment confirmation to info@company.com for faster shipment.</p>
+      {% endif %}
+
+    </div>
+
   </div>
 {% endblock content %}
