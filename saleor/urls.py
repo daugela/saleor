@@ -51,7 +51,7 @@ translatable_urlpatterns = [
     url(r'', include('payments.urls'))]
 
 urlpatterns = non_translatable_urlpatterns + i18n_patterns(
-    *translatable_urlpatterns)
+    *translatable_urlpatterns, prefix_default_language=False)
 
 if settings.DEBUG:
     import debug_toolbar
